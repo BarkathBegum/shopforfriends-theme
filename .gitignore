@@ -1,0 +1,14 @@
+# Shopify CLI
+.shopify/
+shopify.theme.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+
+# Zip artifacts
+*.zip

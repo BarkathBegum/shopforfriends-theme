@@ -1,0 +1,83 @@
+<section class="section section--dark">
+  <div class="split-section">
+    {%- if section.settings.image_position == 'left' -%}
+      <div class="split-media fade-up">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 900 }}"
+               alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+               width="900" loading="lazy">
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="split-content fade-up">
+      <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.description }}</p>
+
+      <div class="split-features">
+        {%- for i in (1..3) -%}
+          {%- assign icon_key  = 'feature_' | append: i | append: '_icon' -%}
+          {%- assign title_key = 'feature_' | append: i | append: '_title' -%}
+          {%- assign desc_key  = 'feature_' | append: i | append: '_desc' -%}
+          {%- if section.settings[title_key] != blank -%}
+            <div class="split-feature">
+              <div class="split-feature-icon" aria-hidden="true">
+                {{ section.settings[icon_key] }}
+              </div>
+              <div class="split-feature-text">
+                <h4>{{ section.settings[title_key] }}</h4>
+                <p>{{ section.settings[desc_key] }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.btn_label != blank -%}
+        <a href="{{ section.settings.btn_url }}" class="btn btn--gold">{{ section.settings.btn_label }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.image_position == 'right' -%}
+      <div class="split-media fade-up">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 900 }}"
+               alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+               width="900" loading="lazy">
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Feature",
+  "tag": "section",
+  "settings": [
+    { "type": "select",       "id": "image_position", "label": "Image position",
+      "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "image_picker", "id": "image",           "label": "Image" },
+    { "type": "text",         "id": "eyebrow",         "label": "Eyebrow",     "default": "Our Philosophy" },
+    { "type": "text",         "id": "heading",         "label": "Heading",     "default": "Crafted with Intention" },
+    { "type": "textarea",     "id": "description",     "label": "Description", "default": "Every piece in our collection is chosen for its craftsmanship, materials, and ability to transform a space into something truly extraordinary." },
+    { "type": "text",         "id": "feature_1_icon",  "label": "Feature 1 icon (emoji or SVG)", "default": "✦" },
+    { "type": "text",         "id": "feature_1_title", "label": "Feature 1 title", "default": "Premium Materials" },
+    { "type": "text",         "id": "feature_1_desc",  "label": "Feature 1 description", "default": "Sourced from the world's finest artisans." },
+    { "type": "text",         "id": "feature_2_icon",  "label": "Feature 2 icon", "default": "◈" },
+    { "type": "text",         "id": "feature_2_title", "label": "Feature 2 title", "default": "Timeless Design" },
+    { "type": "text",         "id": "feature_2_desc",  "label": "Feature 2 description", "default": "Pieces that transcend trends and endure." },
+    { "type": "text",         "id": "feature_3_icon",  "label": "Feature 3 icon", "default": "◇" },
+    { "type": "text",         "id": "feature_3_title", "label": "Feature 3 title", "default": "Sustainably Made" },
+    { "type": "text",         "id": "feature_3_desc",  "label": "Feature 3 description", "default": "Ethical sourcing and eco-conscious production." },
+    { "type": "text",         "id": "btn_label",        "label": "Button label", "default": "Discover Our Story" },
+    { "type": "url",          "id": "btn_url",          "label": "Button link" }
+  ],
+  "presets": [{ "name": "Split Feature" }]
+}
+{% endschema %}

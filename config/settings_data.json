@@ -1,0 +1,12 @@
+{
+  "current": {
+    "show_announcement": true,
+    "announcement_text": "Free Shipping on Orders Over $150  ·  Use code LUXE10 for 10% off your first order",
+    "main_menu": "main-menu",
+    "color_gold": "#c9a84c",
+    "color_bg": "#0f0f0f",
+    "color_text": "#f0ebe0",
+    "heading_font": "cormorant",
+    "cart_type": "drawer"
+  }
+}

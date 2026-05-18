@@ -1,0 +1,58 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name":    "Luxe Home",
+    "theme_version": "1.0.0",
+    "theme_author":  "Custom",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "General",
+    "settings": [
+      { "type": "image_picker", "id": "favicon",            "label": "Favicon" },
+      { "type": "checkbox",     "id": "show_announcement",  "label": "Show announcement bar", "default": true },
+      { "type": "text",         "id": "announcement_text",  "label": "Announcement text",     "default": "Free Shipping on Orders Over $150 · Use code LUXE10 for 10% off your first order" },
+      { "type": "link_list",    "id": "main_menu",          "label": "Main navigation menu",  "default": "main-menu" }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_gold",   "label": "Gold accent color",   "default": "#c9a84c" },
+      { "type": "color", "id": "color_bg",     "label": "Background color",    "default": "#0f0f0f" },
+      { "type": "color", "id": "color_text",   "label": "Body text color",     "default": "#f0ebe0" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "heading_font",
+        "label": "Heading font style",
+        "options": [
+          { "value": "cormorant", "label": "Cormorant Garamond (Elegant)" },
+          { "value": "playfair",  "label": "Playfair Display (Classic)" },
+          { "value": "libre",     "label": "Libre Baskerville (Traditional)" }
+        ],
+        "default": "cormorant"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "drawer", "label": "Slide-out drawer" },
+          { "value": "page",   "label": "Cart page" }
+        ],
+        "default": "drawer"
+      }
+    ]
+  }
+]
