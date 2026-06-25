@@ -1,37 +1,13 @@
-<div class="stats-bar">
-  {%- for i in (1..4) -%}
-    {%- assign num_key   = 'stat_' | append: i | append: '_number' -%}
-    {%- assign suffix_key= 'stat_' | append: i | append: '_suffix' -%}
-    {%- assign label_key = 'stat_' | append: i | append: '_label' -%}
-    <div class="stat-item fade-up" style="transition-delay: {{ forloop.index0 | times: 100 }}ms;">
-      <div class="stat-number"
-        data-target="{{ section.settings[num_key] }}"
-        data-suffix="{{ section.settings[suffix_key] }}">
-        {{ section.settings[num_key] }}{{ section.settings[suffix_key] }}
-      </div>
-      <div class="stat-label">{{ section.settings[label_key] }}</div>
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      {%- for block in section.blocks -%}
+        <div class="stat-item fade-up" {{ block.shopify_attributes }}>
+          <span class="stat-number">{{ block.settings.number }}</span>
+          <span class="stat-label">{{ block.settings.label }}</span>
+        </div>
+      {%- endfor -%}
     </div>
-  {%- endfor -%}
-</div>
-
-{% schema %}
-{
-  "name": "Stats Bar",
-  "tag": "section",
-  "settings": [
-    { "type": "number", "id": "stat_1_number", "label": "Stat 1 number", "default": 15000 },
-    { "type": "text",   "id": "stat_1_suffix", "label": "Stat 1 suffix", "default": "+" },
-    { "type": "text",   "id": "stat_1_label",  "label": "Stat 1 label",  "default": "Happy Customers" },
-    { "type": "number", "id": "stat_2_number", "label": "Stat 2 number", "default": 500 },
-    { "type": "text",   "id": "stat_2_suffix", "label": "Stat 2 suffix", "default": "+" },
-    { "type": "text",   "id": "stat_2_label",  "label": "Stat 2 label",  "default": "Curated Products" },
-    { "type": "number", "id": "stat_3_number", "label": "Stat 3 number", "default": 12 },
-    { "type": "text",   "id": "stat_3_suffix", "label": "Stat 3 suffix", "default": "" },
-    { "type": "text",   "id": "stat_3_label",  "label": "Stat 3 label",  "default": "Years of Excellence" },
-    { "type": "number", "id": "stat_4_number", "label": "Stat 4 number", "default": 98 },
-    { "type": "text",   "id": "stat_4_suffix", "label": "Stat 4 suffix", "default": "%" },
-    { "type": "text",   "id": "stat_4_label",  "label": "Stat 4 label",  "default": "5-Star Reviews" }
-  ],
-  "presets": [{ "name": "Stats Bar" }]
-}
-{% endschema %}
+  </div>
+</section>
+{% schema %}{"name":"Stats Bar","tag":"section","max_blocks":4,"settings":[],"blocks":[{"type":"stat","name":"Stat","settings":[{"type":"text","id":"number","label":"Number","default":"500+"},{"type":"text","id":"label","label":"Label","default":"Happy Customers"}]}],"presets":[{"name":"Stats Bar"}]}{% endschema %}

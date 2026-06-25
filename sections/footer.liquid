@@ -1,104 +1,27 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
-
-      <!-- Brand Column -->
       <div class="footer-brand">
         <a href="{{ routes.root_url }}" class="header-logo">
           {%- if section.settings.logo != blank -%}
             <img src="{{ section.settings.logo | image_url: height: 40 }}" alt="{{ shop.name }}" height="40">
           {%- else -%}
-            {{ shop.name | split: ' ' | first }}<span style="color:var(--color-gold)">{{ shop.name | split: ' ' | last }}</span>
+            {{ shop.name }}
           {%- endif -%}
         </a>
         <p>{{ section.settings.tagline }}</p>
         <div class="footer-social">
-          {%- if section.settings.instagram != blank -%}
-            <a href="{{ section.settings.instagram }}" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-          {%- endif -%}
-          {%- if section.settings.pinterest != blank -%}
-            <a href="{{ section.settings.pinterest }}" class="social-link" aria-label="Pinterest" target="_blank" rel="noopener">PT</a>
-          {%- endif -%}
-          {%- if section.settings.facebook != blank -%}
-            <a href="{{ section.settings.facebook }}" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
-          {%- endif -%}
-          {%- if section.settings.tiktok != blank -%}
-            <a href="{{ section.settings.tiktok }}" class="social-link" aria-label="TikTok" target="_blank" rel="noopener">TK</a>
-          {%- endif -%}
+          {%- if section.settings.instagram != blank -%}<a href="{{ section.settings.instagram }}" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">IG</a>{%- endif -%}
+          {%- if section.settings.facebook != blank -%}<a href="{{ section.settings.facebook }}" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">FB</a>{%- endif -%}
         </div>
       </div>
-
-      <!-- Shop Column -->
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <nav class="footer-links" aria-label="Shop navigation">
-          {%- for link in linklists[section.settings.shop_menu].links -%}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          {%- endfor -%}
-        </nav>
-      </div>
-
-      <!-- Help Column -->
-      <div class="footer-col">
-        <h4>Help</h4>
-        <nav class="footer-links" aria-label="Help navigation">
-          {%- for link in linklists[section.settings.help_menu].links -%}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          {%- endfor -%}
-        </nav>
-      </div>
-
-      <!-- Contact Column -->
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <div class="footer-links">
-          {%- if section.settings.email != blank -%}
-            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-          {%- endif -%}
-          {%- if section.settings.phone != blank -%}
-            <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
-          {%- endif -%}
-          {%- if section.settings.address != blank -%}
-            <span style="color:var(--color-text-muted);font-size:0.9rem;">{{ section.settings.address }}</span>
-          {%- endif -%}
-          {%- if section.settings.hours != blank -%}
-            <span style="color:var(--color-text-faint);font-size:0.8rem;">{{ section.settings.hours }}</span>
-          {%- endif -%}
-        </div>
-      </div>
-
+      <div class="footer-col"><h4>Shop</h4><nav class="footer-links">{%- for link in linklists[section.settings.shop_menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}</nav></div>
+      <div class="footer-col"><h4>Help</h4><nav class="footer-links">{%- for link in linklists[section.settings.help_menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}</nav></div>
+      <div class="footer-col"><h4>Contact</h4><div class="footer-links">{%- if section.settings.email != blank -%}<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>{%- endif -%}</div></div>
     </div>
-
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
-      <div class="payment-icons">
-        <span class="payment-icon">Visa</span>
-        <span class="payment-icon">Mastercard</span>
-        <span class="payment-icon">Amex</span>
-        <span class="payment-icon">PayPal</span>
-        <span class="payment-icon">Apple Pay</span>
-      </div>
     </div>
   </div>
 </footer>
-
-{% schema %}
-{
-  "name": "Footer",
-  "settings": [
-    { "type": "image_picker", "id": "logo",       "label": "Footer logo" },
-    { "type": "textarea",     "id": "tagline",    "label": "Tagline", "default": "Luxury home & lifestyle pieces curated for the discerning eye." },
-    { "type": "url",          "id": "instagram",  "label": "Instagram URL" },
-    { "type": "url",          "id": "pinterest",  "label": "Pinterest URL" },
-    { "type": "url",          "id": "facebook",   "label": "Facebook URL" },
-    { "type": "url",          "id": "tiktok",     "label": "TikTok URL" },
-    { "type": "link_list",    "id": "shop_menu",  "label": "Shop menu",  "default": "main-menu" },
-    { "type": "link_list",    "id": "help_menu",  "label": "Help menu",  "default": "footer" },
-    { "type": "text",         "id": "email",      "label": "Contact email" },
-    { "type": "text",         "id": "phone",      "label": "Phone number" },
-    { "type": "textarea",     "id": "address",    "label": "Address" },
-    { "type": "text",         "id": "hours",      "label": "Business hours", "default": "Mon–Fri, 9am–6pm EST" }
-  ]
-}
-{% endschema %}
+{% schema %}{"name":"Footer","settings":[{"type":"image_picker","id":"logo","label":"Footer logo"},{"type":"textarea","id":"tagline","label":"Tagline","default":"Luxury gifts and lifestyle pieces curated with love."},{"type":"url","id":"instagram","label":"Instagram URL"},{"type":"url","id":"facebook","label":"Facebook URL"},{"type":"link_list","id":"shop_menu","label":"Shop menu","default":"main-menu"},{"type":"link_list","id":"help_menu","label":"Help menu","default":"footer"},{"type":"text","id":"email","label":"Contact email","default":"barkathbegum@gmail.com"},{"type":"text","id":"phone","label":"Phone number"}]}{% endschema %}

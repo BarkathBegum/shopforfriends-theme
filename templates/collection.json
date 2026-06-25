@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "featured-collection",
+      "settings": {"eyebrow":"Browse","products_limit":12,"show_view_all":false}
+    },
+    "footer-section": {"type":"newsletter","settings":{}}
+  },
+  "order": ["main","footer-section"]
+}

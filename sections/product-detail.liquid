@@ -1,162 +1,39 @@
-<section class="section section--dark" style="padding-top: 120px;">
+{%- assign product = product -%}
+<section class="product-detail">
   <div class="container">
-
-    <div class="product-detail">
-      <!-- Gallery -->
-      <div class="product-gallery fade-up">
-        <div class="gallery-main">
-          {%- if product.featured_image -%}
-            <img id="gallery-main-img"
-                 src="{{ product.featured_image | image_url: width: 900 }}"
-                 alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                 width="900" loading="eager">
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag }}
-          {%- endif -%}
+    <div class="product-detail-grid">
+      <div class="product-gallery">
+        <div class="product-main-image">
+          <img id="main-product-img" src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="800">
         </div>
         {%- if product.images.size > 1 -%}
-          <div class="gallery-thumbs">
-            {%- for image in product.images limit: 4 -%}
-              <div class="gallery-thumb {% if forloop.first %}active{% endif %}"
-                   data-src="{{ image | image_url: width: 900 }}">
-                <img src="{{ image | image_url: width: 200 }}"
-                     alt="{{ image.alt | default: product.title | escape }}"
-                     width="200" loading="lazy">
-              </div>
-            {%- endfor -%}
-          </div>
+        <div class="product-thumbs">
+          {%- for image in product.images -%}
+            <button class="thumb-btn{% if forloop.first %} active{% endif %}" onclick="document.getElementById('main-product-img').src='{{ image | image_url: width: 800 }}'">
+              <img src="{{ image | image_url: width: 120 }}" alt="{{ image.alt | escape }}" width="120">
+            </button>
+          {%- endfor -%}
+        </div>
         {%- endif -%}
       </div>
-
-      <!-- Info -->
-      <div class="product-detail-info fade-up" style="transition-delay: 150ms;">
-        <p class="section-eyebrow product-detail-eyebrow">{{ product.type | default: 'Home & Living' }}</p>
+      <div class="product-detail-info">
+        <p class="product-category">{{ product.type }}</p>
         <h1 class="product-detail-title">{{ product.title }}</h1>
-
-        <div class="product-detail-rating">
-          <div class="product-stars" aria-label="5 stars">★★★★★</div>
-          <span style="font-size:0.85rem; color:var(--color-text-muted);">({{ product.metafields.reviews.rating_count | default: '124' }} reviews)</span>
+        <div class="product-detail-price">
+          <span class="price-current">{{ product.price | money }}</span>
+          {%- if product.compare_at_price > product.price -%}
+            <span class="price-original">{{ product.compare_at_price | money }}</span>
+            <span class="price-save">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+          {%- endif -%}
         </div>
-
-        <div class="product-detail-price">{{ product.price | money }}</div>
-
-        <div class="product-detail-desc">
-          {{ product.description }}
-        </div>
-
-        {%- unless product.has_only_default_variant -%}
-          {%- for option in product.options_with_values -%}
-            <div style="margin-bottom: 24px;">
-              <p class="variant-label">{{ option.name }}</p>
-              <div class="variant-options" data-option-index="{{ forloop.index0 }}">
-                {%- for value in option.values -%}
-                  <button class="variant-btn {% if option.selected_value == value %}active{% endif %}"
-                          data-value="{{ value | escape }}">
-                    {{ value }}
-                  </button>
-                {%- endfor -%}
-              </div>
-            </div>
-          {%- endfor -%}
-        {%- endunless -%}
-
-        {% form 'product', product, id: 'product-form' %}
+        <div class="product-detail-desc">{{ product.description }}</div>
+        {%- form 'product', product -%}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <div class="add-to-cart-wrap">
-            <div class="quantity-selector">
-              <button type="button" class="quantity-btn" data-minus aria-label="Decrease quantity">−</button>
-              <input class="quantity-input" type="number" name="quantity" value="1" min="1" aria-label="Quantity">
-              <button type="button" class="quantity-btn" data-plus aria-label="Increase quantity">+</button>
-            </div>
-            <button type="submit" name="add"
-                    class="btn btn--gold add-to-cart-btn"
-                    style="flex:1;"
-                    {% unless product.available %}disabled{% endunless %}>
-              {%- if product.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
-            </button>
-          </div>
-          <a href="/checkout" class="btn btn--outline" style="width:100%; justify-content:center; margin-bottom:24px;">
-            Buy It Now
-          </a>
-        {% endform %}
-
-        <!-- Guarantees -->
-        <div class="product-guarantees">
-          <div class="guarantee-item">
-            <div class="guarantee-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="m16 8 2 2 4-4"/><path d="M1 13l4 4 4-4"/></svg>
-            </div>
-            <div class="guarantee-label">Free Shipping<br>Over $150</div>
-          </div>
-          <div class="guarantee-item">
-            <div class="guarantee-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="guarantee-label">30-Day<br>Returns</div>
-          </div>
-          <div class="guarantee-item">
-            <div class="guarantee-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <div class="guarantee-label">Authenticity<br>Guaranteed</div>
-          </div>
-        </div>
-
+          <button type="submit" class="btn btn--gold btn--full" {% unless product.available %}disabled{% endunless %}>
+            {%- if product.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+          </button>
+        {%- endform -%}
       </div>
     </div>
-
-    <!-- Related Products -->
-    {%- if product.collections.first.products.size > 1 -%}
-      <div style="margin-top: 100px;">
-        <div class="section-header fade-up">
-          <p class="section-eyebrow">You May Also Love</p>
-          <h2>Related Products</h2>
-          <div class="gold-divider"><span class="gold-divider-icon">✦ ✦ ✦</span></div>
-        </div>
-        <div class="product-grid">
-          {%- for related in product.collections.first.products limit: 4 -%}
-            {%- unless related.id == product.id -%}
-              <article class="product-card fade-up">
-                <a href="{{ related.url }}" class="product-image-wrap">
-                  {%- if related.featured_image -%}
-                    <img src="{{ related.featured_image | image_url: width: 600 }}"
-                         alt="{{ related.featured_image.alt | default: related.title | escape }}"
-                         width="600" loading="lazy">
-                  {%- endif -%}
-                </a>
-                <div class="product-info">
-                  <p class="product-category">{{ related.type }}</p>
-                  <div class="product-stars">★★★★★</div>
-                  <h3 class="product-title"><a href="{{ related.url }}">{{ related.title }}</a></h3>
-                  <div class="product-price">
-                    <span class="price-current">{{ related.price | money }}</span>
-                  </div>
-                </div>
-              </article>
-            {%- endunless -%}
-          {%- endfor -%}
-        </div>
-      </div>
-    {%- endif -%}
-
   </div>
 </section>
-
-<script>
-// Gallery thumb switching for product page
-document.querySelectorAll('.gallery-thumb').forEach(function(thumb) {
-  thumb.addEventListener('click', function() {
-    document.querySelectorAll('.gallery-thumb').forEach(function(t) { t.classList.remove('active'); });
-    this.classList.add('active');
-    var mainImg = document.getElementById('gallery-main-img');
-    if (mainImg) mainImg.src = this.dataset.src;
-  });
-});
-</script>
-
-{% schema %}
-{
-  "name": "Product Detail",
-  "tag": "section"
-}
-{% endschema %}

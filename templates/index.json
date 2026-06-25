@@ -3,114 +3,40 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "New Collection 2025",
-        "heading": "<p>Elevate Your Living Space</p>",
-        "subheading": "Curated luxury pieces crafted by the world's finest artisans — for the home that inspires.",
-        "btn1_label": "Shop Collection",
+        "eyebrow": "New Collection 2026",
+        "heading": "<p>Curated With Love</p>",
+        "subheading": "Discover timeless gifts and lifestyle essentials for every occasion.",
+        "btn1_label": "Shop Now",
         "btn1_url": "/collections/all",
-        "btn2_label": "Our Story",
-        "btn2_url": "/pages/about"
+        "btn2_label": "Explore",
+        "btn2_url": "/collections"
       }
-    },
-    "marquee": {
-      "type": "marquee-bar",
-      "settings": {}
     },
     "collection": {
       "type": "featured-collection",
       "settings": {
         "eyebrow": "Curated for You",
         "heading": "Our Collections",
-        "subheading": "Timeless pieces designed to transform your living space into something extraordinary.",
+        "subheading": "Timeless pieces for your home and lifestyle.",
         "products_limit": 4,
         "show_view_all": true
       }
     },
-    "split": {
-      "type": "split-feature",
-      "settings": {
-        "image_position": "left",
-        "eyebrow": "Our Philosophy",
-        "heading": "Crafted with Intention",
-        "description": "Every piece in our collection is chosen for its craftsmanship, materials, and ability to transform a space into something truly extraordinary.",
-        "feature_1_icon": "✦",
-        "feature_1_title": "Premium Materials",
-        "feature_1_desc": "Sourced from the world's finest artisans and ateliers.",
-        "feature_2_icon": "◈",
-        "feature_2_title": "Timeless Design",
-        "feature_2_desc": "Pieces that transcend trends and endure for generations.",
-        "feature_3_icon": "◇",
-        "feature_3_title": "Sustainably Made",
-        "feature_3_desc": "Ethical sourcing and eco-conscious production methods.",
-        "btn_label": "Discover Our Story",
-        "btn_url": "/pages/about"
-      }
-    },
-    "stats": {
-      "type": "stats-bar",
-      "settings": {
-        "stat_1_number": 15000,
-        "stat_1_suffix": "+",
-        "stat_1_label": "Happy Customers",
-        "stat_2_number": 500,
-        "stat_2_suffix": "+",
-        "stat_2_label": "Curated Products",
-        "stat_3_number": 12,
-        "stat_3_suffix": "",
-        "stat_3_label": "Years of Excellence",
-        "stat_4_number": 98,
-        "stat_4_suffix": "%",
-        "stat_4_label": "5-Star Reviews"
-      }
-    },
+    "stats": {"type": "stats-bar","settings": {}},
     "testimonials": {
       "type": "testimonials",
-      "settings": {
-        "eyebrow": "What Our Clients Say",
-        "heading": "Loved by Thousands"
-      },
-      "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Absolutely stunning quality. Every piece I've ordered has exceeded my expectations. This is luxury made accessible.",
-            "name": "Alexandra M.",
-            "title": "Interior Designer, NYC"
-          }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "The craftsmanship is unparalleled. I've furnished my entire living room through Luxe Home and the results speak for themselves.",
-            "name": "James R.",
-            "title": "Architect, London"
-          }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Fast shipping, impeccable packaging, and the piece arrived in perfect condition. I'm a customer for life.",
-            "name": "Sofia L.",
-            "title": "Art Director, Paris"
-          }
-        }
-      },
-      "blocks_order": ["t1", "t2", "t3"]
+      "settings": {"eyebrow": "What Our Customers Say","heading": "Loved by Thousands"}
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
         "eyebrow": "Join the Inner Circle",
-        "heading": "Exclusive Access & Offers",
-        "subheading": "Be the first to discover new collections, member-only discounts, and styling inspiration delivered straight to your inbox.",
+        "heading": "Exclusive Access and Offers",
+        "subheading": "Be the first to discover new collections and member-only discounts.",
         "placeholder": "Your email address",
-        "btn_label": "Subscribe",
-        "disclaimer": "No spam, ever. Unsubscribe anytime."
+        "btn_label": "Subscribe"
       }
     }
   },
-  "order": ["hero", "marquee", "collection", "split", "stats", "testimonials", "newsletter"]
+  "order": ["hero","collection","stats","testimonials","newsletter"]
 }

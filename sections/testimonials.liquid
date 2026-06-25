@@ -1,72 +1,18 @@
-<section class="section section--card">
+<section class="section section--alt">
   <div class="container">
     <div class="section-header fade-up">
       <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
       <h2>{{ section.settings.heading }}</h2>
-      <div class="gold-divider"><span class="gold-divider-icon">✦ ✦ ✦</span></div>
     </div>
-
     <div class="testimonials-grid">
       {%- for block in section.blocks -%}
-        <div class="testimonial-card fade-up" style="transition-delay: {{ forloop.index0 | times: 100 }}ms;"
-             {{ block.shopify_attributes }}>
-          <div class="testimonial-stars product-stars" aria-label="{{ block.settings.rating }} stars">
-            {%- for i in (1..block.settings.rating) -%}★{%- endfor -%}
-          </div>
-          <blockquote class="testimonial-quote">"{{ block.settings.quote }}"</blockquote>
-          <div class="testimonial-author">
-            {%- if block.settings.avatar != blank -%}
-              <img class="author-avatar"
-                   src="{{ block.settings.avatar | image_url: width: 88 }}"
-                   alt="{{ block.settings.name | escape }}"
-                   width="44" loading="lazy">
-            {%- else -%}
-              <div class="author-avatar"
-                style="background:var(--color-surface);display:flex;align-items:center;justify-content:center;color:var(--color-gold);font-family:var(--font-heading);font-size:1.1rem;">
-                {{ block.settings.name | slice: 0 }}
-              </div>
-            {%- endif -%}
-            <div>
-              <div class="author-name">{{ block.settings.name }}</div>
-              <div class="author-title">{{ block.settings.title }}</div>
-            </div>
-          </div>
+        <div class="testimonial-card fade-up" {{ block.shopify_attributes }}>
+          <div class="stars">★★★★★</div>
+          <blockquote>{{ block.settings.quote }}</blockquote>
+          <cite>{{ block.settings.author }}<span>{{ block.settings.location }}</span></cite>
         </div>
       {%- endfor -%}
     </div>
   </div>
 </section>
-
-{% schema %}
-{
-  "name": "Testimonials",
-  "tag": "section",
-  "settings": [
-    { "type": "text", "id": "eyebrow",  "label": "Eyebrow",  "default": "What Our Clients Say" },
-    { "type": "text", "id": "heading",  "label": "Heading",  "default": "Loved by Thousands" }
-  ],
-  "blocks": [
-    {
-      "type": "testimonial",
-      "name": "Testimonial",
-      "settings": [
-        { "type": "range",        "id": "rating",  "label": "Star rating", "min": 1, "max": 5, "default": 5 },
-        { "type": "textarea",     "id": "quote",   "label": "Quote",       "default": "Absolutely stunning quality. Every piece I've ordered has exceeded my expectations. This is luxury made accessible." },
-        { "type": "image_picker", "id": "avatar",  "label": "Avatar photo" },
-        { "type": "text",         "id": "name",    "label": "Customer name","default": "Alexandra M." },
-        { "type": "text",         "id": "title",   "label": "Customer title","default": "Interior Designer, NYC" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Testimonials",
-      "blocks": [
-        { "type": "testimonial" },
-        { "type": "testimonial" },
-        { "type": "testimonial" }
-      ]
-    }
-  ]
-}
-{% endschema %}
+{% schema %}{"name":"Testimonials","tag":"section","max_blocks":6,"settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"What Our Customers Say"},{"type":"text","id":"heading","label":"Heading","default":"Loved by Thousands"}],"blocks":[{"type":"testimonial","name":"Testimonial","settings":[{"type":"textarea","id":"quote","label":"Quote","default":"Absolutely beautiful products."},{"type":"text","id":"author","label":"Author","default":"Priya S."},{"type":"text","id":"location","label":"Location","default":"Chennai"}]}],"presets":[{"name":"Testimonials"}]}{% endschema %}

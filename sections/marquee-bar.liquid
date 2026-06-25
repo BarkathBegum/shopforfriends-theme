@@ -1,19 +1,10 @@
-<div class="marquee-bar" aria-hidden="true">
+<div class="marquee-bar">
   <div class="marquee-track">
-    {%- assign items = "Free Shipping Over $150,Handcrafted Quality,30-Day Returns,Sustainably Sourced,Expert Curation,Luxury Packaging,Free Shipping Over $150,Handcrafted Quality,30-Day Returns,Sustainably Sourced,Expert Curation,Luxury Packaging" | split: "," -%}
-    {%- for item in items -%}
-      <span class="marquee-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        {{ item }}
-      </span>
+    {%- for i in (1..4) -%}
+      <span>{{ section.settings.text_1 }}</span><span class="marquee-dot">&#9670;</span>
+      <span>{{ section.settings.text_2 }}</span><span class="marquee-dot">&#9670;</span>
+      <span>{{ section.settings.text_3 }}</span><span class="marquee-dot">&#9670;</span>
     {%- endfor -%}
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Marquee Bar",
-  "tag": "section",
-  "presets": [{ "name": "Marquee Bar" }]
-}
-{% endschema %}
+{% schema %}{"name":"Marquee Bar","tag":"section","settings":[{"type":"text","id":"text_1","label":"Text 1","default":"Free Shipping on Orders Over ₹999"},{"type":"text","id":"text_2","label":"Text 2","default":"Gift Wrapping Available"},{"type":"text","id":"text_3","label":"Text 3","default":"Easy 7-Day Returns"}],"presets":[{"name":"Marquee Bar"}]}{% endschema %}
