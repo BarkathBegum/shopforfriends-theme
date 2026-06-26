@@ -1,10 +1,81 @@
 {
-  "en": {
-    "general": {
-      "404": {"title":"Page not found","subtext":"The page you requested does not exist."},
-      "cart": {"title":"Your Cart","empty":"Your cart is empty","checkout":"Checkout","subtotal":"Subtotal"},
-      "search": {"placeholder":"Search products...","submit":"Search"}
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist."
     },
-    "products": {"add_to_cart":"Add to Cart","sold_out":"Sold Out","view_details":"View Details"}
+    "search": {
+      "placeholder": "Search products...",
+      "submit": "Search"
+    }
+  },
+  "content": {
+    "cart_total": "Cart Total",
+    "cart_estimated_total": "Estimated Total",
+    "product_image": "Product Image",
+    "product_information": "Product Information",
+    "quantity": "Quantity",
+    "product_total": "Total",
+    "price": "Price",
+    "checkout": "Checkout",
+    "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxes and shipping calculated at checkout",
+    "taxes_included_shipping_at_checkout": "Tax included. Shipping calculated at checkout.",
+    "free_shipping": "Free Shipping",
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "add_to_cart": "Add to Cart",
+    "view_details": "View Details",
+    "empty_cart": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "optional": "Optional",
+    "or": "or",
+    "search": "Search",
+    "close": "Close",
+    "share": "Share"
+  },
+  "accessibility": {
+    "decrease_quantity": "Decrease quantity",
+    "increase_quantity": "Increase quantity",
+    "remove": "Remove item",
+    "close": "Close",
+    "open_cart": "Open cart",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "next_slide": "Next slide",
+    "prev_slide": "Previous slide",
+    "loading": "Loading",
+    "skip_to_content": "Skip to content"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out",
+    "view_details": "View Details",
+    "quantity": "Quantity",
+    "price": "Price",
+    "vendor": "Vendor",
+    "sku": "SKU",
+    "availability": "Availability",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "from_price_html": "From {{ price }}",
+    "on_sale": "Sale"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "checkout": "Checkout",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "taxes_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+    "continue_shopping": "Continue Shopping",
+    "item_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    }
   }
 }

@@ -14,39 +14,76 @@
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body class="template-{{ template.name }}">
-  {%- if settings.announcement_text != blank -%}<div class="announcement-bar">{{ settings.announcement_text }}</div>{%- endif -%}
+
+  {%- if settings.show_announcement and settings.announcement_text != blank -%}
+    <div class="announcement-bar">{{ settings.announcement_text }}</div>
+  {%- endif -%}
+
   {% section 'header' %}
+
+  <!-- Cart Overlay -->
   <div class="cart-overlay" aria-hidden="true"></div>
-  <aside class="cart-drawer" aria-label="Shopping cart">
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" aria-label="Shopping cart" role="dialog" aria-modal="true">
     <div class="cart-header">
       <h2 class="cart-title">Your Cart</h2>
       <button class="cart-close" data-close-cart aria-label="Close cart">&times;</button>
     </div>
-    <div class="cart-items">
+
+    <div class="cart-items" id="cart-items-container">
       {%- if cart.item_count == 0 -%}
-        <p style="color:var(--color-text-muted);text-align:center;margin-top:40px;">Your cart is empty.</p>
+        <div class="cart-empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" style="margin-bottom:16px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <p>Your cart is empty</p>
+          <a href="/collections/all" class="btn btn--outline" style="margin-top:16px;font-size:0.75rem;" data-close-cart>Continue Shopping</a>
+        </div>
       {%- else -%}
         {%- for item in cart.items -%}
-          <div class="cart-item">
-            <img class="cart-item-image" src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}">
+          <div class="cart-item" data-item-key="{{ item.key }}">
+            <a href="{{ item.url }}" class="cart-item-image-wrap">
+              <img class="cart-item-image"
+                src="{{ item.image | image_url: width: 160 }}"
+                alt="{{ item.title | escape }}"
+                width="80" height="80">
+            </a>
             <div class="cart-item-details">
-              <div class="cart-item-name">{{ item.product.title }}</div>
-              <div class="cart-item-price">{{ item.final_line_price | money }}</div>
+              <a href="{{ item.url }}" class="cart-item-name">{{ item.product.title }}</a>
+              {%- unless item.variant.title == 'Default Title' -%}
+                <p class="cart-item-variant">{{ item.variant.title }}</p>
+              {%- endunless -%}
+              <div class="cart-item-row">
+                <div class="cart-item-qty">
+                  <button class="qty-btn" data-action="decrease" data-key="{{ item.key }}" aria-label="Decrease quantity">−</button>
+                  <span class="qty-val">{{ item.quantity }}</span>
+                  <button class="qty-btn" data-action="increase" data-key="{{ item.key }}" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="cart-item-price">{{ item.final_line_price | money }}</span>
+              </div>
+              <button class="cart-item-remove" data-key="{{ item.key }}" aria-label="Remove item">Remove</button>
             </div>
           </div>
         {%- endfor -%}
       {%- endif -%}
     </div>
+
+    {%- if cart.item_count > 0 -%}
     <div class="cart-footer">
       <div class="cart-subtotal">
         <span>Subtotal</span>
-        <span>{{ cart.total_price | money }}</span>
+        <span id="cart-subtotal-price">{{ cart.total_price | money }}</span>
       </div>
-      <a href="/checkout" class="btn btn--gold" style="width:100%;justify-content:center;">Proceed to Checkout</a>
+      <p class="cart-note">Taxes and shipping calculated at checkout</p>
+      <a href="/checkout" class="btn btn--gold btn--full">Checkout</a>
+      <a href="/collections/all" class="cart-continue" data-close-cart>Continue Shopping</a>
     </div>
+    {%- endif -%}
   </aside>
+
   <main id="main-content" role="main">{{ content_for_layout }}</main>
+
   {% section 'footer' %}
+
   {{ 'theme.js' | asset_url | script_tag }}
 </body>
 </html>

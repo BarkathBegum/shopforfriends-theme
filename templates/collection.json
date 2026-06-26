@@ -2,9 +2,14 @@
   "sections": {
     "main": {
       "type": "featured-collection",
-      "settings": {"eyebrow":"Browse","products_limit":12,"show_view_all":false}
-    },
-    "footer-section": {"type":"newsletter","settings":{}}
+      "settings": {
+        "eyebrow": "Browse",
+        "heading": "",
+        "subheading": "",
+        "products_limit": 24,
+        "show_view_all": false
+      }
+    }
   },
-  "order": ["main","footer-section"]
+  "order": ["main"]
 }
