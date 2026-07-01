@@ -8,8 +8,16 @@
         "subheading": "Discover timeless gifts and lifestyle essentials for every occasion.",
         "btn1_label": "Shop Now",
         "btn1_url": "/collections/all",
-        "btn2_label": "Explore",
-        "btn2_url": "/collections"
+        "btn2_label": "Explore All",
+        "btn2_url": "/collections/all"
+      }
+    },
+    "marquee": {
+      "type": "marquee-bar",
+      "settings": {
+        "text_1": "Free Shipping Over ₹999",
+        "text_2": "Gift Wrapping Available",
+        "text_3": "Easy 7-Day Returns"
       }
     },
     "collection": {
@@ -17,15 +25,32 @@
       "settings": {
         "eyebrow": "Curated for You",
         "heading": "Our Collections",
-        "subheading": "Timeless pieces for your home and lifestyle.",
-        "products_limit": 4,
-        "show_view_all": true
+        "subheading": "Timeless pieces for your home and lifestyle."
       }
     },
-    "stats": {"type": "stats-bar","settings": {}},
+    "stats": {
+      "type": "stats-bar",
+      "settings": {},
+      "blocks": {
+        "s1": {"type": "stat", "settings": {"number": "500+", "label": "Happy Customers"}},
+        "s2": {"type": "stat", "settings": {"number": "25+", "label": "Curated Products"}},
+        "s3": {"type": "stat", "settings": {"number": "5★", "label": "Average Rating"}},
+        "s4": {"type": "stat", "settings": {"number": "100%", "label": "Gift Ready"}}
+      },
+      "blocks_order": ["s1", "s2", "s3", "s4"]
+    },
     "testimonials": {
       "type": "testimonials",
-      "settings": {"eyebrow": "What Our Customers Say","heading": "Loved by Thousands"}
+      "settings": {
+        "eyebrow": "What Our Customers Say",
+        "heading": "Loved by Our Community"
+      },
+      "blocks": {
+        "t1": {"type": "testimonial", "settings": {"quote": "Absolutely beautiful products. The agate tray is stunning and arrived perfectly packed!", "author": "Priya S.", "location": "Chennai"}},
+        "t2": {"type": "testimonial", "settings": {"quote": "The crystal earrings are gorgeous. Exactly as pictured. Will definitely order again!", "author": "Meera K.", "location": "Mumbai"}},
+        "t3": {"type": "testimonial", "settings": {"quote": "Fast shipping, beautiful packaging, perfect gifting experience. Highly recommend!", "author": "Kavitha R.", "location": "Bangalore"}}
+      },
+      "blocks_order": ["t1", "t2", "t3"]
     },
     "newsletter": {
       "type": "newsletter",
@@ -38,5 +63,5 @@
       }
     }
   },
-  "order": ["hero","collection","stats","testimonials","newsletter"]
+  "order": ["hero", "marquee", "collection", "stats", "testimonials", "newsletter"]
 }

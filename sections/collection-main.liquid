@@ -1,0 +1,38 @@
+<section class="section section--dark" style="padding-top:120px;">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h1 style="font-size:clamp(2rem,4vw,3rem);">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}<p>{{ collection.description }}</p>{%- endif -%}
+    </div>
+    {%- paginate collection.products by 24 -%}
+    <div class="product-grid">
+      {%- for product in collection.products -%}
+        <article class="product-card fade-up" style="transition-delay:{{ forloop.index0 | times: 40 }}ms;">
+          <a href="{{ product.url }}" class="product-image-wrap">
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="600" height="600" loading="lazy">
+            {%- else -%}
+              <div class="product-image-placeholder"></div>
+            {%- endif -%}
+            <div class="product-overlay"><span class="product-overlay-btn">View Details</span></div>
+          </a>
+          <div class="product-info">
+            {%- if product.type != blank -%}<p class="product-category">{{ product.type }}</p>{%- endif -%}
+            <h3 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+            <div class="product-price">
+              <span class="price-current">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}<span class="price-original">{{ product.compare_at_price | money }}</span>{%- endif -%}
+            </div>
+            <a href="{{ product.url }}" class="btn btn--gold" style="margin-top:12px;width:100%;justify-content:center;font-size:0.75rem;padding:10px 16px;">Shop Now</a>
+          </div>
+        </article>
+      {%- else -%}
+        <p style="grid-column:1/-1;text-align:center;color:var(--color-text-muted);">No products in this collection yet.</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div style="text-align:center;margin-top:60px;">{{ paginate | default_pagination }}</div>
+    {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>

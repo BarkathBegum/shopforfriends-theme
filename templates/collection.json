@@ -1,15 +1,1 @@
-{
-  "sections": {
-    "main": {
-      "type": "featured-collection",
-      "settings": {
-        "eyebrow": "Browse",
-        "heading": "",
-        "subheading": "",
-        "products_limit": 24,
-        "show_view_all": false
-      }
-    }
-  },
-  "order": ["main"]
-}
+{"sections":{"main":{"type":"collection-main","settings":{}}},"order":["main"]}
